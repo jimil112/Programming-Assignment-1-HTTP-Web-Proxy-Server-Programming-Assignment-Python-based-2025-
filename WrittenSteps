@@ -18,7 +18,7 @@ Step 1:
         The response maybe the same, however the proxy could add headers.
 
 
-    Step 2: 
+Step 2: 
     1. How will the client know to talk to the proxy?
         To route http requests though the proxy, a browser must be explicity configured. Usually the borwser is configured to send requests to a localhost::XXXX (port)
 
