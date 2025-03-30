@@ -175,7 +175,7 @@ while True:
 
             # Get the response from the origin server
             # ~~~~ INSERT CODE ~~~~
-            originServerRequest = b""
+            originServerResponse = b""
             while True:
                 chunk = originServerSocket.recv(BUFFER_SIZE)
                 if not chunk:
