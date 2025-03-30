@@ -61,15 +61,22 @@ while True:
   except socket.error as err:
     print ('Failed to accept connection')
     sys.exit()
+ 
 
   # Get HTTP request from client
   # and store it in the variable: message_bytes
+try:
   # ~~~~ INSERT CODE ~~~~
+    message_bytes = clientSocket.recv(BUFFER_SIZE)  
   # ~~~~ END CODE INSERT ~~~~
-  message = message_bytes.decode('utf-8')
-  print ('Received request:')
-  print ('< ' + message)
-
+    message = message_bytes.decode('utf-8')
+    print ('Received request:')
+    print ('< ' + message)
+except socket.error as err:
+    print(f'Failed to receive data: {err}')
+    sys.exit()
+ # ________________________________________________   
+  
   # Extract the method, URI and version of the HTTP client request 
   requestParts = message.split()
   method = requestParts[0]
