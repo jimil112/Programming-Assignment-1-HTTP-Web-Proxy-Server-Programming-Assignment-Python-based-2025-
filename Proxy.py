@@ -188,7 +188,6 @@ while True:
             clientSocket.sendall(originServerResponse)
             # ~~~~ END CODE INSERT ~~~~
         
-    # _________________________________________________________________________
 
             # Create a new file in the cache for the requested file.
             cacheDir, file = os.path.split(cacheLocation)
@@ -199,6 +198,7 @@ while True:
 
             # Save origin server response in the cache file
             # ~~~~ INSERT CODE ~~~~
+            cacheFile.write(originServerResponse)
             # ~~~~ END CODE INSERT ~~~~
             cacheFile.close()
             print('Cache file closed')
