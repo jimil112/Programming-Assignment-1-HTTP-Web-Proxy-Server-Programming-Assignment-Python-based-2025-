@@ -1,0 +1,35 @@
+Step 1:
+
+    1. What HTTP request will the browser send to the proxy?
+        Generally whem browsers are set to utilise proxy, it sends a complete URL, as apose to a relative path within the request. 
+        e.g GET http://randomURL.com/index.html HTTP/1.1
+            Host: randomURL.com
+
+    2. What will HTTP response look like?
+        From an individual client a standard HTTP response is a status line, response headers, and optionally a message body, diaplaying what the resailt of the clients request was. 
+        e.g HTTP/1.1 200OK  // Status
+            DATE: Day, 00 Mon 2025 00:00:00     // Response Headers
+            Server: Achache/0;0.00
+            Content-Type: text/html
+            Content-Length: 00000
+            <html>...</html>    // Message Body
+
+    3. In what ways will the response look different if it comes from the proxy than if it comes from the origin server (i.e. the server where the original page is stored?). You will not be able to test this yet, but what do you think would happen?
+        The response maybe the same, however the proxy could add headers.
+
+
+    Step 2: 
+    1. How will the client know to talk to the proxy?
+        To route http requests though the proxy, a browser must be explicity configured. Usually the borwser is configured to send requests to a localhost::XXXX (port)
+
+    2. What host and port number will the proxy be on?
+        Generally proxy serevers use:
+            Host: localhost
+            Port: 8080
+
+    3. The proxy may need to connect to the origin server (if the web object is not in the cache), what host and port number will the proxy connect to?
+        The proxy will only connect to the origin server if the resource which has been requested is not in the cache. 
+
+    4. Where will the proxy get the web object information?
+        If the object information is cached, the proxy will retrieve the local object from the local storage. If the information is not cached, the proxy will extract the hots and path from the request.
+        It then opens a socket to the origin server, then sends a GET request. Following this it recieves the reponce, and passes on the reponce to the client. Then the responce is cached. 
