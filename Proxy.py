@@ -75,7 +75,6 @@ while True:
         print(f'Failed to receive data: {err}')
         sys.exit()
 
-# _________________________________________________________________________
     # Extract the method, URI and version of the HTTP client request
     requestParts = message.split()
     method = requestParts[0]
@@ -105,6 +104,7 @@ while True:
 
     print('Requested Resource:\t' + resource)
 
+    # _________________________________________________________________________
     # Check if resource is in cache
     try:
         cacheLocation = './' + hostname + resource
@@ -123,6 +123,7 @@ while True:
         # ProxyServer finds a cache hit
         # Send back response to client
         # ~~~~ INSERT CODE ~~~~
+        clientSocket.sendall(''.join(cacheData).encode())
         # ~~~~ END CODE INSERT ~~~~
         cacheFile.close()
         print('Sent to the client:')
@@ -133,7 +134,9 @@ while True:
         # Create a socket to connect to origin server
         # and store in originServerSocket
         # ~~~~ INSERT CODE ~~~~
+        originServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # ~~~~ END CODE INSERT ~~~~
+    # _________________________________________________________________________
 
         print('Connecting to:\t\t' + hostname + '\n')
         try:
