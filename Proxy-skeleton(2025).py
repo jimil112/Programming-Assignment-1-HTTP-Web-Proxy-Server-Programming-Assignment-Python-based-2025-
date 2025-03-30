@@ -19,7 +19,9 @@ proxyPort = int(args.port)
 # Create a server socket, bind it to a port and start listening
 try:
     # Create a server socket
+    # ~~~~ INSERT CODE ~~~~
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # ~~~~ END CODE INSERT ~~~~
     print('Created socket')
 except socket.error as err:
     print(f'Failed to create socket: {err}')
@@ -27,18 +29,22 @@ except socket.error as err:
 
 try:
     # Bind the server socket to a host and port
+    # ~~~~ INSERT CODE ~~~~
     serverSocket.bind((proxyHost, proxyPort))
+    # ~~~~ END CODE INSERT ~~~~
     print('Port is bound')
 except socket.error as err:
-    print(f'Port is already in use: {err}')
+    print(f'Port is already in use')
     sys.exit()
 
 try:
     # Listen on the server socket
+    # ~~~~ INSERT CODE ~~~~
     serverSocket.listen(5)
+    # ~~~~ END CODE INSERT ~~~~
     print('Listening to socket')
 except socket.error as err:
-    print(f'Failed to listen: {err}')
+    print('Failed to listen')
     sys.exit()
 
 # Continuously accept connections
@@ -46,24 +52,29 @@ while True:
     print('Waiting for connection...')
     clientSocket = None
 
-    # Accept connection from client and store in the clientSocket
+    # Accept connection from client and store it in the clientSocket
     try:
+        # ~~~~ INSERT CODE ~~~~
         clientSocket, clientAddress = serverSocket.accept()
+        # ~~~~ END CODE INSERT ~~~~
         print('Received a connection')
     except socket.error as err:
-        print(f'Failed to accept connection: {err}')
+        print('Failed to accept connection')
         sys.exit()
 
     # Get HTTP request from client
     # and store it in the variable: message_bytes
     try:
+        # ~~~~ INSERT CODE ~~~~
         message_bytes = clientSocket.recv(BUFFER_SIZE)
+        # ~~~~ END CODE INSERT ~~~~
         message = message_bytes.decode('utf-8')
         print('Received request:')
         print('< ' + message)
     except socket.error as err:
         print(f'Failed to receive data: {err}')
         sys.exit()
+
 # _________________________________________________________________________
     # Extract the method, URI and version of the HTTP client request
     requestParts = message.split()
