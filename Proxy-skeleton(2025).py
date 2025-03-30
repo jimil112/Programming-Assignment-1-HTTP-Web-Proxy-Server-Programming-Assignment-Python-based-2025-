@@ -40,9 +40,10 @@ except socket.error as err:
 try:
   # Listen on the server socket
   # ~~~~ INSERT CODE ~~~~
+  serverSocket.listen(5)
   # ~~~~ END CODE INSERT ~~~~
   print ('Listening to socket')
-except:
+except socket.error as err:
   print ('Failed to listen')
   sys.exit()
 
