@@ -30,9 +30,10 @@ except socket.error as err:
 try:
   # Bind the the server socket to a host and port
   # ~~~~ INSERT CODE ~~~~
+  serverSocket.bind((proxyHost, proxyPort))
   # ~~~~ END CODE INSERT ~~~~
   print ('Port is bound')
-except:
+except socket.error as err: 
   print('Port is already in use')
   sys.exit()
 

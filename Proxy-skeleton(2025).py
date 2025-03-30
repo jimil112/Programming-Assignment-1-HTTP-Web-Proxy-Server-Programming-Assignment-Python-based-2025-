@@ -21,8 +21,8 @@ try:
     # Create a server socket
      # ~~~~ INSERT CODE ~~~~
     serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # ~~~~ END CODE INSERT ~~~~
     print('Created socket')
-      # ~~~~ END CODE INSERT ~~~~
 except socket.error as err:
     print(f'Failed to create socket: {err}')
     sys.exit()
@@ -30,9 +30,10 @@ except socket.error as err:
 try:
   # Bind the the server socket to a host and port
   # ~~~~ INSERT CODE ~~~~
+  serverSocket.bind((proxyHost, proxyPort))
   # ~~~~ END CODE INSERT ~~~~
   print ('Port is bound')
-except:
+except socket.error as err: 
   print('Port is already in use')
   sys.exit()
 
