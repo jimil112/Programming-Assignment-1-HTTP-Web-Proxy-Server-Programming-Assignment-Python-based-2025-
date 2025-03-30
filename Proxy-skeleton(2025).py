@@ -135,7 +135,6 @@ while True:
         # ~~~~ INSERT CODE ~~~~
         originServerSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # ~~~~ END CODE INSERT ~~~~
-    # _________________________________________________________________________
 
         print('Connecting to:\t\t' + hostname + '\n')
         try:
@@ -157,7 +156,6 @@ while True:
             originServerRequest = f"GET {resource} HTTP/1.1"
             originServerRequestHeader = f"Host: {hostname}\r\nConnection: close"
             # ~~~~ END CODE INSERT ~~~~
-    # _________________________________________________________________________
 
             # Construct the request to send to the origin server
             request = originServerRequest + '\r\n' + originServerRequestHeader + '\r\n\r\n'
@@ -177,11 +175,20 @@ while True:
 
             # Get the response from the origin server
             # ~~~~ INSERT CODE ~~~~
+            originServerRequest = b""
+            while True:
+                chunk = originServerSocket.recv(BUFFER_SIZE)
+                if not chunk:
+                    break
+                originServerResponse += chunk
             # ~~~~ END CODE INSERT ~~~~
 
             # Send the response to the client
             # ~~~~ INSERT CODE ~~~~
+            clientSocket.sendall(originServerResponse)
             # ~~~~ END CODE INSERT ~~~~
+        
+    # _________________________________________________________________________
 
             # Create a new file in the cache for the requested file.
             cacheDir, file = os.path.split(cacheLocation)
