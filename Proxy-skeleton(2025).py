@@ -6,7 +6,7 @@ import argparse
 import re
 
 # 1MB buffer size
-BUFFER_SIZE = 1000000
+BUFFER_SIZE = 8080
 
 # Get the IP address and Port number to use for this web proxy server
 parser = argparse.ArgumentParser()
